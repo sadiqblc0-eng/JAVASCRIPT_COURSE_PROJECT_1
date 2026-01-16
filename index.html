@@ -3,74 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>js Clock</title>
-  <style>
-    body{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #282c34;
-      color: white;
-      font-family: 'Arial', Sans-Serif;
-    }
-    body::-webkit-scrollbar{
-      display: none;
-    }
-    .container-clock{
-      text-align: center;
-      font-size: 42px;
-      border: 2px solid white;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    #start{
-      background-color: red;
-      padding: 20px;
-      border: 1px solid white;
-      border-radius: 10px;
-      color: white;
-      font-size: 22px;
-      transition: all 0.3s ease;
-    }
-    #start:hover{
-      background-color: teal;
-      color: white;
-      font-size: 20px;
-      transform: scale(1.1);
-    }
-  </style>
+  <title>JS World Clock</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container-clock">
-   <h1 class="clock">00:00:00</h1>
-     <button id="start">start Clock</button>
+    <h1 class="clock">00:00:00</h1>
+
+    <div>
+      <button id="start">Start ▶️</button>
+      <button id="Sound">Mute 🔇</button>
+      <button id="theme">Light ☀️</button>
+    </div>
+
+    <div>
+      <select id="timezone"></select>
+    </div>
+
+    <div>
+      <input type="time" id="alarmTime">
+      <button id="setAlarm">Set Alarm ⏰</button>
+    </div>
   </div>
-  <audio src="./ticking-clock.mp3" preload="auto">
-  </audio>
-  <script>
-const element = document.querySelector('.clock');
-const sound = document.querySelector('audio');
-const btn = document.getElementById('start');
-let started = false;
-btn.addEventListener('click',()=>{
-  if(started) return;
-  started = true;
-  setInterval(()=>{
-    const time = new Date();
-    const option = {
-     timeZone: 'Asia/Karachi',
-     hour: '2-digit',
-     minute: '2-digit',
-     second: '2-digit',
-    };
-    element.textContent = time.toLocaleTimeString('en-US',option);
-    sound.currentTime = 0;
-    sound.play().catch(()=>{});
-  },1000)
-});
- // console.log(element);
-  </script>
+
+  <!-- 🔊 AUDIO (same folder me mp3 honi chahiye) -->
+  <audio id="tick" src="ticking-clock.mp3"></audio>
+  <audio id="alarmSound" src="ticking-clock.mp3"></audio>
+
+  <script src="index.js"></script>
 </body>
 </html>
